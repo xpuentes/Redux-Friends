@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Friend from './components/Friend';
+import FriendsList from './components/FriendsList';
+import Form from './components/Form';
 
 import { connect } from 'react-redux';
 import { getFriends } from './actions/actions';
@@ -8,12 +9,14 @@ import { getFriends } from './actions/actions';
 class App extends Component {
   componentDidMount(){
     this.props.getFriends();
+    console.log(this.props.friends)
   };
 
   render() {
     return (
       <div className="App">
-        <Friend />
+        <FriendsList friends={this.props.friends}/>
+        <Form />
       </div>
     );
   }
@@ -21,7 +24,7 @@ class App extends Component {
 
 const mstp = (state) => {
   return {
-    state
+    friends: state.friends
   }
 }
 

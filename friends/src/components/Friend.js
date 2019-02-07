@@ -27,8 +27,8 @@ class Friend extends React.Component {
   render(){
     return (
       <div>
-        <Name onClick={this.openCard}>NAME</Name>
-        { this.state.infoCardToggle ? <InfoCard>INFO</InfoCard> : null }
+        <Name onClick={this.openCard}>{this.props.friend.name}</Name>
+        { this.state.infoCardToggle ? <InfoCard><p>{this.props.friend.age}</p><p>{this.props.friend.email}</p></InfoCard> : null }
       </div>
     );
   }
