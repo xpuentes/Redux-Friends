@@ -1,4 +1,4 @@
-import { GET_FRIENDS, ADD_FRIENDS } from '../actions/actions';
+import { FETCH_FRIENDS, ADD_FRIENDS } from '../actions/actions';
 
 const intitialState = {
   fetchingFriends: false,
@@ -15,8 +15,10 @@ const intitialState = {
 
 function reducer(state = intitialState, action) {
     switch (action.type) {
-      case GET_FRIENDS:
-        return ;
+      case FETCH_FRIENDS:
+        return { ...state, friends: action.payload };
+      case ADD_FRIENDS:
+        return { ...state, friends: [...state.friends, action.payload] }
       default:
         return state;
     }
