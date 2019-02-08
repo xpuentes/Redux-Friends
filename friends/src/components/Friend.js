@@ -9,7 +9,7 @@ const Name = styled.div`
 const InfoCard = styled.div`
   width: 200px;
   height: 150px;
-  border: 1px solid red;
+  border: 1px solid #a0001d;
 `
 
 class Friend extends React.Component {
@@ -28,7 +28,7 @@ class Friend extends React.Component {
     return (
       <div>
         <Name onClick={this.openCard}>{this.props.friend.name}</Name>
-        { this.state.infoCardToggle ? <InfoCard><p>{this.props.friend.age}</p><p>{this.props.friend.email}</p></InfoCard> : null }
+        { this.state.infoCardToggle ? <InfoCard><p>{this.props.friend.age}</p><p>{this.props.friend.email}</p><button onClick={e => this.props.deleteFriend(this.props.friend.id)}>Delete</button></InfoCard> : null }
       </div>
     );
   }
