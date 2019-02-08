@@ -4,7 +4,7 @@ import FriendsList from './components/FriendsList';
 import Form from './components/Form';
 
 import { connect } from 'react-redux';
-import { getFriends } from './actions/actions';
+import { getFriends, addFriend } from './actions/actions';
 
 class App extends Component {
   componentDidMount(){
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <FriendsList friends={this.props.friends}/>
-        <Form />
+        <Form addFriend={this.props.addFriend} />
       </div>
     );
   }
@@ -28,4 +28,4 @@ const mstp = (state) => {
   }
 }
 
-export default connect(mstp, { getFriends: getFriends })(App);
+export default connect(mstp, { getFriends: getFriends, addFriend: addFriend })(App);

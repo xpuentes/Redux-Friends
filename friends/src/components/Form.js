@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 class Form extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       friend: {
         name: '',
@@ -23,14 +23,26 @@ class Form extends React.Component {
     })
   }
 
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.addFriend(this.state.friend);
+    this.setState({
+      friend: {
+        name: '',
+        email: '',
+        age: ''
+      }
+    })
+  }
+
   render(){
     return (
       <div>
-        <form>
+        <form onSubmit={this.submitHandler}>
           <input onChange={this.changeHandler} placeholder='Name' name='name' value={this.state.friend.name} />
           <input onChange={this.changeHandler} placeholder='Age' name='age' value={this.state.friend.age} />
           <input onChange={this.changeHandler} placeholder='Email' name='email' value={this.state.friend.email} />
-          <button>Add</button>
+          <button type='submit'>Add</button>
         </form>
       </div>
     );
