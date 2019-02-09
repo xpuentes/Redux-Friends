@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 class PutForm extends React.Component {
   constructor(props){
@@ -28,7 +27,6 @@ class PutForm extends React.Component {
     this.setState({
       id: e.target.value
     });
-    console.log(this.state)
   }
 
   submitHandler = e => {
@@ -49,7 +47,7 @@ class PutForm extends React.Component {
         <h1>UPDATE FRIEND</h1>
         <form onSubmit={this.submitHandler}>
           <select onChange={this.selectChangeHandler} value={this.state.id}>
-            {this.props.friends.map(friend => <option value={friend.id}>{friend.name}</option>)}
+            {this.props.friends.map(friend => <option key={friend.id} value={friend.id}>{friend.name}</option>)}
           </select>
           <input onChange={this.changeHandler} placeholder='Name' name='name' value={this.state.friend.name} />
           <input onChange={this.changeHandler} placeholder='Age' name='age' value={this.state.friend.age} />

@@ -10,7 +10,6 @@ import { getFriends, addFriend, deleteFriend, updateFriend } from './actions/act
 class App extends Component {
   componentDidMount(){
     this.props.getFriends();
-    console.log(this.props.friends)
   };
 
   render() {
