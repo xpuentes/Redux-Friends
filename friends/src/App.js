@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList';
-import Form from './components/Form';
+import PostForm from './components/PostForm';
+import PutForm from './components/PutForm';
 
 import { connect } from 'react-redux';
-import { getFriends, addFriend, deleteFriend } from './actions/actions';
+import { getFriends, addFriend, deleteFriend, updateFriend } from './actions/actions';
 
 class App extends Component {
   componentDidMount(){
@@ -16,7 +17,8 @@ class App extends Component {
     return (
       <div className="App">
         <FriendsList friends={this.props.friends} deleteFriend={this.props.deleteFriend}/>
-        <Form addFriend={this.props.addFriend} />
+        <PostForm addFriend={this.props.addFriend} />
+        <PutForm updateFriend={this.props.updateFriend} friends={this.props.friends}/>
       </div>
     );
   }
@@ -28,4 +30,4 @@ const mstp = (state) => {
   }
 }
 
-export default connect(mstp, { getFriends: getFriends, addFriend: addFriend, deleteFriend: deleteFriend })(App);
+export default connect(mstp, { getFriends: getFriends, addFriend: addFriend, deleteFriend: deleteFriend, updateFriend: updateFriend })(App);

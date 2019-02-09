@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-class Form extends React.Component {
+class PutForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -10,7 +10,8 @@ class Form extends React.Component {
         name: '',
         email: '',
         age: ''
-      }
+      },
+      id: '1'
     }
   }
 
@@ -23,9 +24,16 @@ class Form extends React.Component {
     })
   }
 
+  selectChangeHandler = e => {
+    this.setState({
+      id: e.target.value
+    });
+    console.log(this.state)
+  }
+
   submitHandler = e => {
     e.preventDefault();
-    this.props.addFriend(this.state.friend);
+    this.props.updateFriend(this.state.friend, this.state.id);
     this.setState({
       friend: {
         name: '',
@@ -38,15 +46,19 @@ class Form extends React.Component {
   render(){
     return (
       <div>
+        <h1>UPDATE FRIEND</h1>
         <form onSubmit={this.submitHandler}>
+          <select onChange={this.selectChangeHandler} value={this.state.id}>
+            {this.props.friends.map(friend => <option value={friend.id}>{friend.name}</option>)}
+          </select>
           <input onChange={this.changeHandler} placeholder='Name' name='name' value={this.state.friend.name} />
           <input onChange={this.changeHandler} placeholder='Age' name='age' value={this.state.friend.age} />
           <input onChange={this.changeHandler} placeholder='Email' name='email' value={this.state.friend.email} />
-          <button type='submit'>Add</button>
+          <button type='submit'>Update</button>
         </form>
       </div>
     );
   }
 }
 
-export default Form;
+export default PutForm;

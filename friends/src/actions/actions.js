@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_FRIENDS = 'GET_FRIENDS';
 export const ADD_FRIENDS = 'ADD_FRIENDS';
 export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const UPDATE_FRIEND = 'UPDATE_FRIEND';
 
 export const getFriends = () => dispatch => {
   axios
@@ -39,6 +40,20 @@ export const deleteFriend = (id) => dispatch => {
     .then(response => {
       dispatch({
         type: DELETE_FRIEND,
+        payload: response.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+export const updateFriend = (updatedFriend, id) => dispatch => {
+  axios
+    .put(`http://localhost:5000/api/friends/${id}`, updatedFriend)
+    .then(response => {
+      dispatch({
+        type: UPDATE_FRIEND,
         payload: response.data
       });
     })
